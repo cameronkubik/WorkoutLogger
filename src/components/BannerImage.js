@@ -22,14 +22,10 @@ const styles = {
         height: 150,
         alignSelf: 'center',
         marginBottom: 10,
-        marginTop: 64
+        marginTop: 64,
     },
     imageStyle: {
         height: 150,
-        //opacity: 0.6
-        //alignSelf: 'stretch',
-        //flexDirection: 'row',
-        //justifyContent: 'flex-start'
     },
 };
 // Make the component available to other parts of the App

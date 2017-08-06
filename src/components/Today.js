@@ -72,7 +72,6 @@ class Today extends Component {
 
                 <WorkoutSummary />
 
-
             </ View>
         );
     }

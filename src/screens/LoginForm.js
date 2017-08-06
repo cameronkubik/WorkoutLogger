@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 import { loginUser, signupUser, authUpdate } from '../actions'
-import { Card, CardSection, Input, Button, Spinner } from './common'
-import { BannerImage } from './BannerImage'
+import { Card, CardSection, Input, Button, Spinner } from '../components/common'
+import { BannerImage } from '../components/BannerImage'
 
 class LoginForm extends Component {
 

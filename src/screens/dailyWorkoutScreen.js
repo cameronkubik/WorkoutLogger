@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import Today from './components/Today'
-import { logout } from './actions'
+import Today from '../components/Today'
+import { logout } from '../actions'
 
 // Create a Component
 class DailyWorkout extends Component {
