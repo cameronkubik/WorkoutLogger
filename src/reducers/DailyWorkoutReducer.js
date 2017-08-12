@@ -26,7 +26,8 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 currentWorkout: getNextWorkout(action.payload.currentWorkout, action.payload.direction),
-                exerciseList: getExerciseList(getNextWorkout(state.currentWorkout, action.payload.direction))
+                exerciseList: getExerciseList(getNextWorkout(state.currentWorkout, action.payload.direction)),
+                currentExerciseIndex: 0
             };
 
         case NEXT_EXERCISE:

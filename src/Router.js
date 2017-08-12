@@ -28,7 +28,7 @@ const RouterComponent = () => {
                 <Scene
                     key="exerciseInputScreen"
                     component={ExerciseInputScreen}
-
+                    //onLeft={Actions.dailyWorkout()}
                 />
             </Scene>
 

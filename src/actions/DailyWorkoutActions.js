@@ -43,6 +43,6 @@ export const prevExercise = () => {
     return (dispatch) => {
         dispatch({ type: PREV_EXERCISE });
 
-        Actions.pop();
+        Actions.pop({ refresh: {} });
     }
 }
