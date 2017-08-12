@@ -1,6 +1,6 @@
 import React from 'react'
 import { Scene, Router } from 'react-native-router-flux'
-import LoginForm from './screens/LoginForm'
+import LoginScreen from './screens/LoginScreen'
 import DailyWorkout from './screens/dailyWorkoutScreen'
 import ExerciseInputScreen from './screens/ExerciseInputScreen'
 
@@ -11,7 +11,7 @@ const RouterComponent = () => {
             <Scene key="auth" >
                 <Scene
                     key="login"
-                    component={LoginForm}
+                    component={LoginScreen}
                     title="Workout Log v0.3.1"
                     initial
                 />

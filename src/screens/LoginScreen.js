@@ -5,7 +5,7 @@ import { loginUser, signupUser, authUpdate } from '../actions'
 import { Card, CardSection, Input, Button, Spinner } from '../components/common'
 import { BannerImage } from '../components/BannerImage'
 
-class LoginForm extends Component {
+class LoginScreen extends Component {
 
     onButtonPress() {
         const { email, password } = this.props;
@@ -108,4 +108,4 @@ const mapStateToProps = ({ auth }) => {
 };
 
 //export default LoginForm;
-export default connect(mapStateToProps, { loginUser, signupUser, authUpdate })(LoginForm);
+export default connect(mapStateToProps, { loginUser, signupUser, authUpdate })(LoginScreen);
