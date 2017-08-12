@@ -5,6 +5,7 @@ import DailyWorkout from './screens/dailyWorkoutScreen'
 import ExerciseInputScreen from './screens/ExerciseInputScreen'
 
 const RouterComponent = () => {
+
     return (
         <Router sceneStyle={{ paddingTop: 0 }}>
 
@@ -22,18 +23,19 @@ const RouterComponent = () => {
                     key="dailyWorkout"
                     component={DailyWorkout}
                     title="Today's Workout"
-
+                    initial
                 />
                 <Scene
                     key="exerciseInputScreen"
                     component={ExerciseInputScreen}
-                    title="TODO"
-                    initial
+
                 />
             </Scene>
 
         </Router>
     );
+
 };
+
 
 export default RouterComponent;

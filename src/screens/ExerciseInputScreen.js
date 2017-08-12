@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Picker, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-//import _ from 'lodash'
+import { nextExercise, prevExercise } from '../actions'
 
 
 class ExerciseListScreen extends Component {
@@ -11,6 +11,10 @@ class ExerciseListScreen extends Component {
         previousReps: '12',
         weights: this.instantiateWeightArray(5),
         reps: this.instantiateRepArray(1)
+    }
+
+    componentWillMount() {
+        this.props.navigationState.title = this.props.exerciseList[this.props.currentExerciseIndex].name
     }
 
     instantiateWeightArray(_increment) {
@@ -24,7 +28,7 @@ class ExerciseListScreen extends Component {
 
     instantiateRepArray(_increment) {
         const reps = [];
-        for (let i = 1; i <= 25; i++) {
+        for (let i = 0; i < 25; i++) {
             reps[i] = (i * _increment).toString();
         }
 
@@ -32,7 +36,10 @@ class ExerciseListScreen extends Component {
     }
 
     render() {
-        console.log(this.state.weights);
+
+        //this.props.navigationState.title = this.props.exerciseList[this.props.currentExerciseIndex].name
+        console.log('Props: ', this.props);
+
         return (
                 <View style={styles.container}>
 
@@ -61,8 +68,6 @@ class ExerciseListScreen extends Component {
                             />
                         </View>
                     </View>
-
-
 
                     <View style={styles.logDataSection}>
                         <View style={styles.dataContainer}>
@@ -122,12 +127,20 @@ class ExerciseListScreen extends Component {
                     </View>
 
                     <View style={styles.actionButtonSection}>
-                        <View style={styles.listViewContainer}>
-                            <Icon name='list-ul' size={60} color='#567084' />
-                        </View>
+
                         <View style={styles.navigationArrowContainer}>
-                            <Icon name='arrow-left' size={60} color='#567084' style={styles.navIcon} />
-                            <Icon name='arrow-right' size={60} color='#567084' style={styles.navIcon} />
+                            <Icon.Button
+                                name='arrow-left' size={60} color='#567084'
+                                style={[styles.navIcon, styles.navIconLeft]}
+                                backgroundColor='#F8F8F8'
+                                onPress={this.props.prevExercise}
+                            />
+                            <Icon.Button
+                                name='arrow-right' size={60} color='#567084'
+                                style={[styles.navIcon, { marginLeft: 60 }]}
+                                backgroundColor='#F8F8F8'
+                                onPress={this.props.nextExercise}
+                            />
                         </View>
                     </View>
 
@@ -152,7 +165,7 @@ const styles = {
         //borderColor: 'blue',
     },
     userInputSection: {
-        flex: 2,
+        flex: 2.5,
         //borderWidth: 1,
         //borderColor: 'red',
         flexDirection: 'row',
@@ -171,10 +184,14 @@ const styles = {
         marginTop: 3
     },
     actionButtonSection: {
-        flex: 2.5,
+        flex: 2,
         //borderWidth: 3,
         //borderColor: 'green',
-        flexDirection: 'row'
+        borderTopWidth: 2,
+        borderTopColor: '#000',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
     },
     inputTitleSection: {
         flex: 0.5,
@@ -244,13 +261,18 @@ const styles = {
         //borderColor: 'cyan',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'stretch',
     },
     navIcon: {
-        flex: 1,
+        //flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 10
+        margin: 5,
+        //borderWidth: 2,
+        //borderColor: 'red'
+    },
+    navIconLeft: {
+        marginRight: 60,
     },
     weightPicker: {
         borderRightColor: '#567084',
@@ -258,4 +280,10 @@ const styles = {
     }
 }
 
-export default connect(null)(ExerciseListScreen);
+const mapStateToProps = ({ dailyWorkout }) => {
+    const { currentWorkout, exerciseList, currentExerciseIndex } = dailyWorkout;
+
+    return { currentWorkout, exerciseList, currentExerciseIndex };
+}
+
+export default connect(mapStateToProps, { nextExercise, prevExercise })(ExerciseListScreen);

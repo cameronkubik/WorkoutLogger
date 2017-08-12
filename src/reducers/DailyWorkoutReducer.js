@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-    LOGOUT, CHANGE_WORKOUT
+    LOGOUT, CHANGE_WORKOUT, NEXT_EXERCISE, PREV_EXERCISE
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -12,6 +12,7 @@ const INITIAL_STATE = {
         { name: 'Cable Press', setsReps: '3x10 reps' },
         { name: 'Pec-Deck', setsReps: '4x6 reps' }
     ],
+    currentExerciseIndex: 0
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,14 +24,45 @@ export default (state = INITIAL_STATE, action) => {
 
         case CHANGE_WORKOUT:
             return {
+                ...state,
                 currentWorkout: getNextWorkout(action.payload.currentWorkout, action.payload.direction),
                 exerciseList: getExerciseList(getNextWorkout(state.currentWorkout, action.payload.direction))
+            };
+
+        case NEXT_EXERCISE:
+            return {
+                ...state,
+                currentExerciseIndex: getNextExerciseIndex(state.currentExerciseIndex)
+            };
+
+        case PREV_EXERCISE:
+            return {
+                ...state,
+                currentExerciseIndex: getPrevExerciseIndex(state.currentExerciseIndex)
             };
 
         default:
             return state;
 
     }
+}
+
+const getNextExerciseIndex = (currentIndex) => {
+
+    if (currentIndex === 4) {
+        return 0;
+    }
+
+    return currentIndex + 1;
+}
+
+const getPrevExerciseIndex = (currentIndex) => {
+
+    if (currentIndex === 0) {
+        return 4;
+    }
+
+    return currentIndex - 1;
 }
 
 const getNextWorkout = (currentWorkout, direction) => {

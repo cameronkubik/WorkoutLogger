@@ -7,3 +7,6 @@ export const AUTH_UPDATE = 'auth_update'
 // Home
 export const LOGOUT = 'logout'
 export const CHANGE_WORKOUT = 'change_workout'
+export const BEGIN_WORKOUT = 'begin_workout'
+export const NEXT_EXERCISE = 'next_exercise'
+export const PREV_EXERCISE = 'next_exercise'

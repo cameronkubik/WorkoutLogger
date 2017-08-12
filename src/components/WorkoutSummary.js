@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Actions } from 'react-native-router-flux'
+//import { Actions } from 'react-native-router-flux'
 import { beginWorkout, editWorkout } from '../actions'
 import { Button } from './BigButton'
 import TodayExerciseList from './TodayExerciseList'
@@ -23,7 +23,7 @@ class WorkoutSummary extends Component {
                             name='edit'
                             size={30}
                             color='#567084'
-                            
+
                         />
                     </View>
 
@@ -33,7 +33,7 @@ class WorkoutSummary extends Component {
 
                 <Button
                     style={styles.buttonStyle}
-                    onPress={Actions.exerciseInputScreen}
+                    onPress={this.props.beginWorkout}
                 >
                     <Text>LIFT</Text>
                 </Button>
