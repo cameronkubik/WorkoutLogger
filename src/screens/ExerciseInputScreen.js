@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, Picker, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { nextExercise, prevExercise } from '../actions'
+import { changeExercise } from '../actions'
 
 
 class ExerciseListScreen extends Component {
@@ -129,18 +129,20 @@ class ExerciseListScreen extends Component {
                     <View style={styles.actionButtonSection}>
 
                         <View style={styles.navigationArrowContainer}>
+
                             <Icon.Button
                                 name='arrow-left' size={60} color='#567084'
                                 style={[styles.navIcon, styles.navIconLeft]}
                                 backgroundColor='#F8F8F8'
-                                onPress={this.props.prevExercise}
+                                onPress={console.log('nav arrow hit')}
                             />
+
                             <Icon.Button
                                 name='arrow-right' size={60} color='#567084'
                                 style={[styles.navIcon, { marginLeft: 60 }]}
                                 backgroundColor='#F8F8F8'
-                                onPress={this.props.nextExercise}
                             />
+
                         </View>
                     </View>
 
@@ -286,4 +288,4 @@ const mapStateToProps = ({ dailyWorkout }) => {
     return { currentWorkout, exerciseList, currentExerciseIndex };
 }
 
-export default connect(mapStateToProps, { nextExercise, prevExercise })(ExerciseListScreen);
+export default connect(mapStateToProps, { changeExercise })(ExerciseListScreen);

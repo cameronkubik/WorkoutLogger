@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import {
-    LOGOUT, CHANGE_WORKOUT, NEXT_EXERCISE, PREV_EXERCISE
+    LOGOUT, CHANGE_WORKOUT, CHANGE_EXERCISE
 } from '../actions/types'
 
 const INITIAL_STATE = {
@@ -16,6 +16,7 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+    console.log(action);
 
     switch (action.type) {
 
@@ -30,16 +31,10 @@ export default (state = INITIAL_STATE, action) => {
                 currentExerciseIndex: 0
             };
 
-        case NEXT_EXERCISE:
+        case CHANGE_EXERCISE:
             return {
                 ...state,
-                currentExerciseIndex: getNextExerciseIndex(state.currentExerciseIndex)
-            };
-
-        case PREV_EXERCISE:
-            return {
-                ...state,
-                currentExerciseIndex: getPrevExerciseIndex(state.currentExerciseIndex)
+                currentExerciseIndex: getNextExerciseIndex(state.currentExerciseIndex, action.payload)
             };
 
         default:
@@ -48,22 +43,22 @@ export default (state = INITIAL_STATE, action) => {
     }
 }
 
-const getNextExerciseIndex = (currentIndex) => {
+const getNextExerciseIndex = (_currentIndex, _direction) => {
 
+    const currentIndex = parseInt(_currentIndex, 10);
+
+    if (_direction === 'prev') {
+        if (currentIndex === 0) {
+            return 4;
+        }
+        return currentIndex - 1;
+    }
+    // else direction === next
     if (currentIndex === 4) {
         return 0;
     }
-
+    // else currentIndex !== 4
     return currentIndex + 1;
-}
-
-const getPrevExerciseIndex = (currentIndex) => {
-
-    if (currentIndex === 0) {
-        return 4;
-    }
-
-    return currentIndex - 1;
 }
 
 const getNextWorkout = (currentWorkout, direction) => {
